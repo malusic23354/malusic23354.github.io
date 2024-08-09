@@ -1,0 +1,97 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f9f7e8;
+    /* Background ambiance */
+    background-image: linear-gradient(#faed8c, #c2b557);
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow-y: hidden;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+}
+
+.content {
+    margin: 10px;
+}
+
+input[type="text"],
+button {
+    padding: 12px 20px;
+    margin: 10px;
+    font-size: 18px;
+    border: none;
+    border-radius: 25px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    opacity: 1;
+    /* Initial opacity */
+    transition: opacity 0.3s ease;
+}
+
+input[type="text"]:disabled,
+button:disabled {
+    opacity: 0.7;
+    /* Reduced opacity for disabled elements */
+}
+
+input[type="text"] {
+    background-color: #ffd700;
+    /* Golden theme */
+}
+
+button {
+    background-color: #ffd700;
+    /* Golden theme */
+    color: #fff;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #cca300;
+    /* Darker golden color on hover */
+}
+
+#diceContainer {
+    margin-top: 40px;
+}
+
+#diceContainer img {
+    width: 120px;
+    margin: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+#scorecontainer {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 40px;
+    color: #000000;
+    /* Golden color */
+    background: linear-gradient(45deg, #dab929, #000000, #ff9933);
+    /* Golden gradient */
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: glow 1.5s infinite alternate;
+    text-align: center;
+    /* Center the text */
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 10px #ffd700, 0 0 20px #ffcc00, 0 0 30px #ffd700, 0 0 40px #ffcc00, 0 0 50px #ffd700, 0 0 60px #ffcc00, 0 0 70px #ffd700;
+    }
+
+    to {
+        text-shadow: 0 0 20px #ffd700, 0 0 40px #ffcc00, 0 0 60px #ffd700, 0 0 80px #ffcc00, 0 0 100px #ffd700, 0 0 120px #ffcc00, 0 0 140px #ffd700;
+    }
+}

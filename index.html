@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roll the Dice</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1
+        style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; color: black; text-align: center; padding-top: 5%;">
+        Dice Game</h1>
+    <div class="container">
+        <div class="content">
+            <input type="text" id="nameInput" placeholder="Enter your name">
+            <button id="verifyBtn" onclick="verify()">Verify Name</button>
+        </div>
+        <div class="content">
+            <button id="rollBtn" onclick="rollthedice()" disabled>Roll Dice</button>
+        </div>
+        <div class="content">
+            <div id="diceContainer"></div>
+            <p id="scorecontainer">Score: 0</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

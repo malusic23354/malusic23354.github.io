@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="Images/Logo.png" type="image/png">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="Style.css">
+</head>
+<body>
+    <div class="loader">
+        <div class="loader-container">
+            <div class="loader-spinner"></div>
+            <div class="loader-text">LOADING</div>
+        </div>
+    </div>
+    
+    <header>
+        <nav>
+            <ul>
+                <li><img src="Images/Logo.png" alt="Logo"></li>
+                <li><button id="darkmodeselector">.<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" id="buttontoggleimg"><path d="M495.8 0c5.5 0 10.9 .2 16.3 .7c7 .6 12.8 5.7 14.3 12.5s-1.6 13.9-7.7 17.3c-44.4 25.2-74.4 73-74.4 127.8c0 81 65.5 146.6 146.2 146.6c8.6 0 17-.7 25.1-2.1c6.9-1.2 13.8 2.2 17 8.5s1.9 13.8-3.1 18.7c-34.5 33.6-81.7 54.4-133.6 54.4c-9.3 0-18.4-.7-27.4-1.9c-11.2-22.6-29.8-40.9-52.6-51.7c-2.7-58.5-50.3-105.3-109.2-106.7c-1.7-10.4-2.6-21-2.6-31.8C304 86.1 389.8 0 495.8 0zM447.9 431.9c0 44.2-35.8 80-80 80L96 511.9c-53 0-96-43-96-96c0-47.6 34.6-87 80-94.6l0-1.3c0-53 43-96 96-96c34.9 0 65.4 18.6 82.2 46.4c13-9.1 28.8-14.4 45.8-14.4c44.2 0 80 35.8 80 80c0 5.9-.6 11.7-1.9 17.2c37.4 6.7 65.8 39.4 65.8 78.7z"/></svg></button></li>
+                <li><button><a href="Pages/Portfolio.html">Portfolio</a></button></li>
+                <li><button><a href="Index.html">Home</a></button></li>
+            </ul>
+        </nav>
+        <audio autoplay id="backgroundaudio">
+            <source src="Audio/background_music.mp3" type="audio/mpeg" />
+        </audio>
+    </header>
+    <main>
+        <div id="container">
+            <div>
+                <h2>Hello There!</h2>
+                <p>My name is Malek Khelil and I'm a student at</p>
+                <p>Sadiki High School majoring in Computer Science.</p>
+                <p>This is my Portfolio Website to know more about</p>
+                <p>what I do click <a href="Portfolio.html">here</a></p>
+            </div>
+            <img src="Images/PFP.avif" alt="My Image">
+        </div>
+    </main>
+    <footer>
+        <p id="footertxt">&copy; This website is a personal portfolio of mine :D</p>
+    </footer>
+    <script>
+        async function loader() {
+            const darkmode = localStorage.getItem("darkmode");
+
+            // Apply dark mode if it was previously enabled
+            if (darkmode === 'enabled') {
+                enableDarkMode();
+            }
+            Audiofile = document.getElementById("backgroundaudio");
+            Audiofile.volume = 0.07;
+
+            const loader = document.querySelector(".loader");
+            // Ensure loader exists before trying to manipulate it
+            if (loader) {
+                // Optional: Introduce a delay before starting the fade-out effect
+                await new Promise(resolve => setTimeout(resolve, 1000)); // Delay before fading out (1s)
+
+                // Start the fade-out transition
+                loader.classList.add("loader-hidden");
+
+                // Define the transition duration (match this with CSS transition duration)
+                const transitionDuration = 1500; // 1.5 seconds
+
+                // Wait for the transition to complete, then remove the loader
+                loader.addEventListener("transitionend", () => {
+                    setTimeout(() => {
+                        // Ensure the loader is still a child of the body before removing
+                        if (loader.parentNode === document.body) {
+                            document.body.removeChild(loader);
+                        }
+                    }, transitionDuration); // Delay should match CSS transition duration
+                });
+            }
+        }
+
+        const darkmodetoggle = document.getElementById("darkmodeselector");
+
+        const enableDarkMode = () => {
+            document.body.classList.add("darkmode-page");
+
+            // Apply dark mode background gradient
+            const container = document.getElementById("container");
+            if (container) {
+                container.style.background = "radial-gradient(circle, rgba(0,14,36,1) 0%, rgba(0,25,74,1) 92%, rgba(0,25,74,1) 100%)";
+            }
+
+            // Apply dark mode to buttons and links
+            const buttons = document.querySelectorAll("button");
+            const links = document.querySelectorAll("a");
+            document.getElementById("footertxt").style.color = "white";
+            buttons.forEach(button => button.classList.add("button-dark-mode"));
+            buttons.forEach(button => button.classList.remove("button-light-mode"));
+            links.forEach(link => link.style.color = "white");
+
+            // Change image fill color if the element exists
+            const buttonToggleImg = document.getElementById("buttontoggleimg");
+            if (buttonToggleImg) {
+                buttonToggleImg.style.fill = "white";
+            }
+
+            localStorage.setItem("darkmode", "enabled"); // Store dark mode as enabled
+        };
+
+        const disableDarkMode = () => {
+            document.body.classList.remove("darkmode-page");
+
+            // Reset background gradient
+            const container = document.getElementById("container");
+            if (container) {
+                container.style.background = "radial-gradient(circle, rgb(203, 201, 239) 0%, rgb(188, 188, 238) 76%, rgb(208, 210, 241) 100%)";
+            }
+
+            // Remove dark mode from buttons and links
+            const buttons = document.querySelectorAll("button");
+            const links = document.querySelectorAll("a");
+            document.getElementById("footertxt").style.color = "black";
+            buttons.forEach(button => button.classList.remove("button-dark-mode"));
+            buttons.forEach(button => button.classList.add("button-light-mode"));
+            links.forEach(link => link.style.color = "black");
+
+            // Change image fill color if the element exists
+            const buttonToggleImg = document.getElementById("buttontoggleimg");
+            if (buttonToggleImg) {
+                buttonToggleImg.style.fill = "black";
+            }
+
+            localStorage.removeItem("darkmode"); // Correctly remove dark mode status
+        };
+
+        // Toggle dark mode based on current state
+        const toggleDarkMode = () => {
+            const darkmode = localStorage.getItem("darkmode");
+            if (darkmode !== "enabled") {
+                enableDarkMode();
+            } else {
+                disableDarkMode();
+            }
+        };
+        // Add event listener for dark mode toggle
+        darkmodetoggle.addEventListener("click", toggleDarkMode);
+
+        // Execute loader function after the page loads
+        window.addEventListener("load", loader);
+
+    </script>
+</body>
+</html>
